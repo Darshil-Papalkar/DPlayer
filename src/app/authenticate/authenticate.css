@@ -1,0 +1,173 @@
+.slice-container {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+
+  background: linear-gradient(90deg, rgba(245, 115, 0, 0.7), transparent);
+}
+
+.slice {
+  border: 3px solid white;
+  box-shadow: -6px -1px 14px 12px black;
+
+  position: absolute;
+  opacity: 0;
+  overflow: hidden;
+}
+.slice:nth-child(1) {
+  top: -35%;
+  left: -25%;
+  animation: slice1 1500ms linear forwards;
+  animation-delay: 100ms;
+  z-index: 2;
+  transform: rotate(-45deg);
+  background-color: #ff671f;
+  width: 68%;
+  height: 80vh;
+}
+
+.slice:nth-child(1) img {
+  transform: rotate(45deg);
+  width: 60%;
+  position: relative;
+  right: -15%;
+  bottom: -25%;
+}
+
+.slice:nth-child(2) {
+  top: 55%;
+  left: -10%;
+  animation: slice2 1000ms linear forwards;
+  animation-delay: 1500ms;
+  z-index: 1;
+  transform: rotate(45deg);
+  background-color: #ffffff;
+  width: 60%;
+  height: 75vh;
+}
+
+.slice:nth-child(2) img {
+  transform: rotate(315deg);
+  position: relative;
+  right: 0%;
+  top: -135%;
+  width: 100%;
+}
+
+.slice:nth-child(3) {
+  top: 0%;
+  left: -7%;
+  animation: slice3 1000ms linear forwards;
+  animation-delay: 2500ms;
+  z-index: 0;
+  transform: rotate(90deg);
+  background-color: #046a38;
+  width: 150vh;
+  height: 50vw;
+}
+
+.slice:nth-child(3) img {
+  transform: rotate(270deg);
+    position: relative;
+    right: -23%;
+    top: -20%;
+    height: 100%;
+    width: 50%
+}
+
+@keyframes slice1 {
+  from {
+    transform: translateX(-300px) rotate(-45deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-10px) rotate(-45deg);
+  }
+}
+
+@keyframes slice2 {
+  from {
+    transform: translateX(-200px) rotate(45deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-10px) rotate(45deg);
+  }
+}
+
+@keyframes slice3 {
+  from {
+    transform: translateX(-100px) rotate(90deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-80px) rotate(90deg);
+  }
+}
+
+.login-card {
+  position: fixed;
+  right: 7rem;
+  top: 50%;
+  transform: translate(-7rem, -50%);
+
+  width: 100%;
+  height: 45vh;
+  /*background-color: #000;*/
+  /*background-color: transparent;*/
+  /*box-shadow: 0px 0px 7px 1px #fff;*/
+  opacity: 0;
+  animation: loginForm 4s ease-in forwards;
+  perspective: 1000px;
+  transition: min-height .5s ease-in-out;
+}
+
+.login-card.login {
+  min-height: 25rem;
+}
+
+.login-card.register {
+  min-height: 30rem;
+}
+
+
+.login-card-inner {
+  position: relative;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+
+  width: 100%;
+  height: 100%;
+}
+
+.login-card.register .login-card-inner {
+  transform: rotateY(180deg);
+}
+
+.customForm-login, .customForm-register {
+  position: absolute;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 1rem 2rem;
+}
+
+.customForm-register {
+  transform: rotateY(180deg);
+}
+
+@keyframes loginForm {
+  from {
+    opacity: 0;
+    width: 0;
+  }
+  to {
+    opacity: 1;
+    width: 100%;
+  }
+}
+
+.formFooter p:last-child {
+  text-decoration: underline;
+  cursor: pointer;
+}
