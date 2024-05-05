@@ -1,14 +1,10 @@
 "use client";
 
 import {useFormState} from "react-dom";
-import {loginUser, registerUser} from "@/app/lib/actions";
+import {loginUser, redirectToDashboard, registerUser} from "@/app/lib/actions";
 import {useState} from "react";
-import {AppDispatch, FormState, IAuthState, LoginFormState, RegisterFormState} from "@/app/lib/definitions";
+import {FormState, LoginFormState, RegisterFormState} from "@/app/lib/definitions";
 import {ExclamationCircleIcon} from "@heroicons/react/24/outline";
-import {redirect, RedirectType} from "next/navigation";
-import {useAppDispatch, useAppSelector} from "@/app/redux/store";
-import {setAuthState} from "@/app/redux/slices/authSlice";
-import CONSTANTS from "@/app/lib/enums";
 
 const initialLoginState: LoginFormState = {message: null, errors: {}, success: {}};
 const initialRegisterState: RegisterFormState = {message: null, errors: {}, success: {}};
@@ -47,6 +43,7 @@ const FormContainer = () => {
     const skipHandler = () => {
         console.log("Skip");
         // authDispatch(null);
+        redirectToDashboard();
     };
 
     const handleFormToggle = () => {
@@ -65,7 +62,7 @@ const FormContainer = () => {
                         type="email"
                         autoComplete="off"
                         placeholder="Email*"
-                        className="text-lg px-5 py-2 border-solid border-white border rounded-md my-2"
+                        className="custom-form-input text-lg px-5 py-2 border-solid border-white border rounded-md my-2"
                         defaultValue=""
                         aria-describedby="email-error"
                         required
@@ -85,7 +82,7 @@ const FormContainer = () => {
                         type="password"
                         autoComplete="off"
                         placeholder="Password*"
-                        className="text-lg px-5 py-2 border-solid border-white border rounded-md my-2"
+                        className="custom-form-input text-lg px-5 py-2 border-solid border-white border rounded-md my-2"
                         minLength={8}
                         defaultValue=""
                         aria-describedby="password-error"
@@ -107,7 +104,7 @@ const FormContainer = () => {
                     >
                         {loginState.message && (
                             <>
-                                <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
+                                <ExclamationCircleIcon className="h-5 w-5 text-red-500"/>
                                 <p className="text-sm text-red-500">{loginState.message}</p>
                             </>
                         )}
@@ -141,7 +138,7 @@ const FormContainer = () => {
                         type="name"
                         autoComplete="off"
                         placeholder="Name*"
-                        className="text-lg px-5 py-2 border-solid border-white border rounded-md my-2"
+                        className="custom-form-input text-lg px-5 py-2 border-solid border-white border rounded-md my-2"
                         defaultValue=""
                         aria-describedby="name-error"
                         required
@@ -161,7 +158,7 @@ const FormContainer = () => {
                         type="email"
                         autoComplete="off"
                         placeholder="Email*"
-                        className="text-lg px-5 py-2 border-solid border-white border rounded-md my-2"
+                        className="custom-form-input text-lg px-5 py-2 border-solid border-white border rounded-md my-2"
                         defaultValue=""
                         aria-describedby="email-error"
                         required
@@ -181,7 +178,7 @@ const FormContainer = () => {
                         type="password"
                         autoComplete="off"
                         placeholder="Password*"
-                        className="text-lg px-5 py-2 border-solid border-white border rounded-md my-2"
+                        className="custom-form-input text-lg px-5 py-2 border-solid border-white border rounded-md my-2"
                         minLength={8}
                         defaultValue=""
                         aria-describedby="password-error"
@@ -203,7 +200,7 @@ const FormContainer = () => {
                     >
                         {registerState.message && (
                             <>
-                                <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
+                                <ExclamationCircleIcon className="h-5 w-5 text-red-500"/>
                                 <p className="text-sm text-red-500">{registerState.message}</p>
                             </>
                         )}

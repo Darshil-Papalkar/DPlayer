@@ -1,11 +1,11 @@
 import Container from "@mui/material/Container";
-import ListData from "@/app/ui/admin/ListData";
+import AdminPage from "@/app/ui/admin/AdminPage";
 
 
 const Admin = () => {
     return (
         <Container maxWidth="lg">
-                <ListData />
+            <AdminPage />
         </Container>
     )
 };

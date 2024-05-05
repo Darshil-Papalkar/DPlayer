@@ -115,7 +115,13 @@
   height: 45vh;
   /*background-color: #000;*/
   /*background-color: transparent;*/
-  /*box-shadow: 0px 0px 7px 1px #fff;*/
+  /*box-shadow: 0 0 2px 1px #fff;*/
+  background: rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2.9px);
+  -webkit-backdrop-filter: blur(2.9px);
+  border: 1px solid rgba(255, 255, 255, 0.32);
   opacity: 0;
   animation: loginForm 4s ease-in forwards;
   perspective: 1000px;
@@ -130,6 +136,14 @@
   min-height: 30rem;
 }
 
+.login-card .custom-form-input {
+  background: rgba(0, 0, 0, 0.19);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border: 1px solid rgba(0, 0, 0, 0.38);
+}
 
 .login-card-inner {
   position: relative;

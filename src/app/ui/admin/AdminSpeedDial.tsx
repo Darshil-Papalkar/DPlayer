@@ -2,38 +2,36 @@ import {Backdrop, SpeedDial, SpeedDialAction, SpeedDialIcon} from "@mui/material
 import * as React from "react";
 import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
 import LiveTvOutlinedIcon from '@mui/icons-material/LiveTvOutlined';
-import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
+import LabelIcon from '@mui/icons-material/Label';
 import CollectionsBookmarkOutlinedIcon from '@mui/icons-material/CollectionsBookmarkOutlined';
 import {SpeedDialUpdateType} from "@/app/lib/definitions";
+import {ADMIN_ACTIONS} from "@/app/lib/enums";
 
-const CustomSpeedDial = (props: SpeedDialUpdateType) => {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+const AdminSpeedDial = ({selectSpeedDialItem, isOpen, handleOpen, handleClose}: SpeedDialUpdateType) => {
 
     const actions = [
-        {icon: <MovieCreationOutlinedIcon onClick={() => props.selectSpeedDialItem("addmovies")}/>, name: 'Add Movie'},
-        {icon: <LiveTvOutlinedIcon onClick={() => props.selectSpeedDialItem("addwebseries")}/>, name: 'Add Web Series'},
+        {icon: <MovieCreationOutlinedIcon onClick={() => selectSpeedDialItem(ADMIN_ACTIONS.ADDMOVIES)}/>, name: 'Add Movie'},
+        {icon: <LiveTvOutlinedIcon onClick={() => selectSpeedDialItem(ADMIN_ACTIONS.ADDWEBSERIES)}/>, name: 'Add Web Series'},
         {
-            icon: <CategoryOutlinedIcon
-                onClick={() => props.selectSpeedDialItem('addcategory')}/>, name: 'Add Category Type'
+            icon: <LabelIcon
+                onClick={() => selectSpeedDialItem(ADMIN_ACTIONS.ADDTHEME)}/>, name: 'Add Theme'
         },
         {
             icon: <CollectionsBookmarkOutlinedIcon
-                onClick={() => props.selectSpeedDialItem("addgenre")}/>, name: 'Add Genre Type'
+                onClick={() => selectSpeedDialItem(ADMIN_ACTIONS.ADDGENRE)}/>, name: 'Add Genre'
         },
     ];
 
     return (
         <>
-            <Backdrop open={open}/>
+            <Backdrop open={isOpen}/>
             <SpeedDial
                 ariaLabel="Select Action"
-                sx={{position: 'absolute', bottom: 16, right: 16}}
+                sx={{position: 'fixed', bottom: 16, right: 16}}
                 icon={<SpeedDialIcon/>}
                 onClose={handleClose}
                 onOpen={handleOpen}
-                open={open}
+                open={isOpen}
             >
                 {actions.map((action) => (
                     <SpeedDialAction
@@ -49,4 +47,4 @@ const CustomSpeedDial = (props: SpeedDialUpdateType) => {
     );
 };
 
-export default CustomSpeedDial;
+export default AdminSpeedDial;

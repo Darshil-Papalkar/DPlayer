@@ -1,9 +1,21 @@
+import TextField from "@mui/material/TextField";
+import React from "react";
 
 
 const AddGenre = () => {
     return (
         <>
-            Add Genre
+            <TextField
+                autoFocus
+                id="genreName"
+                name="genreName"
+                label="Add Genre"
+                type="text"
+                defaultValue=""
+                helperText="Enter Genre Name separated by Comma(,)"
+                required
+                fullWidth
+            />
         </>
     );
 };

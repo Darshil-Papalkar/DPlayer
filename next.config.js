@@ -8,5 +8,9 @@ module.exports = {
                 permanent: true,
             }
         ]
+    },
+    reactStrictMode: true,
+    env: {
+        BASE_URI: process.env.SERVER_URL,
     }
 }

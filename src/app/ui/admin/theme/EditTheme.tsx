@@ -1,25 +1,26 @@
-import {AdminDialogData, Genre, Theme} from "@/app/lib/definitions";
 import TextField from "@mui/material/TextField";
 import React, {useState} from "react";
+import {AdminDialogData, Theme} from "@/app/lib/definitions";
 
 
-const EditGenre = ({dialogData}: { dialogData: AdminDialogData }) => {
-    const [inputValue, setInputValue] = useState("genreName" in dialogData.genre ? dialogData.genre.genreName : "");
+const EditTheme = ({dialogData}: { dialogData: AdminDialogData }) => {
+    const [inputValue, setInputValue] = useState("themeName" in dialogData.theme ? dialogData.theme.themeName : "");
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
     };
+
     return (
         <>
             <TextField
                 autoFocus
-                id="genreName"
-                name="genreName"
-                label="Edit Genre"
+                id="themeName"
+                name="themeName"
+                label="Edit Theme"
                 type="text"
                 value={inputValue}
                 onChange={onChange}
-                helperText="Enter Genre Name"
+                helperText="Enter Theme Name"
                 required
                 fullWidth
             />
@@ -27,4 +28,4 @@ const EditGenre = ({dialogData}: { dialogData: AdminDialogData }) => {
     );
 };
 
-export default EditGenre;
+export default EditTheme;

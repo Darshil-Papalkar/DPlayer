@@ -3,7 +3,11 @@
 import {z} from "zod";
 import {LOGIN_USER, REGISTER_USER} from "@/app/lib/routes.config";
 import {FormBody, LoginFormState, RegisterFormState} from "@/app/lib/definitions";
-import CONSTANTS from "@/app/lib/enums";
+import {redirect, RedirectType} from "next/navigation";
+
+export const redirectToDashboard = () => {
+    redirect("/dashboard", RedirectType.push);
+};
 
 const LoginSchema = z.object({
     id: z.string(),
@@ -47,23 +51,23 @@ export const loginUser = async (
             },
         });
         if(!response.ok) {
-            const errorText = await response.text();
+            const errorText = await response.json();
             return {
                 errors: {},
-                message: errorText,
+                message: errorText.message,
                 success: {}
             }
         }
-        const data = await response.text();
+        const data = await response.json();
         console.log(data);
-        return {
-            errors: {},
-            message: null,
-            success: {
-                id: data,
-                message: CONSTANTS.SUCCESS,
-            },
-        };
+        // return {
+        //     errors: {},
+        //     message: null,
+        //     success: {
+        //         id: data,
+        //         message: CONSTANTS.SUCCESS,
+        //     },
+        // };
     } catch (error: any) {
         console.error(error);
         return {
@@ -72,6 +76,8 @@ export const loginUser = async (
             success: {}
         }
     }
+    redirectToDashboard();
+    return {};
 };
 
 const RegisterSchema = z.object({
@@ -123,23 +129,23 @@ export const registerUser = async (
             },
         });
         if(!response.ok) {
-            const errorText = await response.text();
+            const errorText = await response.json();
             return {
                 errors: {},
-                message: errorText,
+                message: errorText.message,
                 success: {}
             }
         }
-        const data = await response.text();
+        const data = await response.json();
         console.log(data);
-        return {
-            errors: {},
-            message: null,
-            success: {
-                id: data,
-                message: CONSTANTS.SUCCESS
-            },
-        }
+        // return {
+        //     errors: {},
+        //     message: null,
+        //     success: {
+        //         id: data,
+        //         message: CONSTANTS.SUCCESS
+        //     },
+        // }
     } catch (error: any) {
         console.error(error);
         return {
@@ -148,4 +154,6 @@ export const registerUser = async (
             success: {}
         };
     }
+    redirectToDashboard();
+    return {}
 };
